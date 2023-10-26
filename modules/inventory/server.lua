@@ -1039,7 +1039,7 @@ function Inventory.AddItem(inv, item, count, metadata, slot, cb)
 	if type(item) ~= 'table' then item = Items(item) end
 
 	if not item then return false, 'invalid_item' end
-
+	if not Inventory.CanCarryItem(inv, item, count) then return false, 'no_space' end
 	inv = Inventory(inv) --[[@as OxInventory]]
 
 	if not inv?.slots then return false, 'invalid_inventory' end
